@@ -1,8 +1,12 @@
 package com.mindex.challenge.data;
 
+import org.springframework.data.annotation.Id;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
+    @Id
     private String employeeId;
     private String firstName;
     private String lastName;
@@ -63,10 +67,24 @@ public class Employee {
     }
 
     public Compensation getMostRecentCompensation() {
-        return compensation.getLast();
+        if (compensation == null || compensation.isEmpty()) {
+            return null;
+        }
+        return compensation.get(compensation.size() - 1);
     }
 
     public void setNewCompensation(Compensation compensation) {
+        if (this.compensation == null) {
+            this.compensation = new ArrayList<>();
+        }
         this.compensation.add(compensation);
+    }
+
+    public List<Compensation> getCompensations() {
+        return compensation;
+    }
+
+    public void setCompensations(List<Compensation> compensation) {
+        this.compensation = compensation;
     }
 }
