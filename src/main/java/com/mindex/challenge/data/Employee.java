@@ -9,7 +9,7 @@ public class Employee {
     private String position;
     private String department;
     private List<Employee> directReports;
-    private Compensation compensation;
+    private List<Compensation> compensation;
 
     public Employee() {
     }
@@ -62,11 +62,11 @@ public class Employee {
         this.directReports = directReports;
     }
 
-    public Compensation getCompensation() {
-        return compensation;
+    public Compensation getMostRecentCompensation() {
+        return compensation.getLast();
     }
 
-    public void setCompensation(Compensation compensation) {
-        this.compensation = compensation;
+    public void setNewCompensation(Compensation compensation) {
+        this.compensation.add(compensation);
     }
 }
