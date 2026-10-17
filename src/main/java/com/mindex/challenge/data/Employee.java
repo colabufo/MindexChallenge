@@ -1,14 +1,19 @@
 package com.mindex.challenge.data;
 
+import org.springframework.data.annotation.Id;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
+    @Id
     private String employeeId;
     private String firstName;
     private String lastName;
     private String position;
     private String department;
     private List<Employee> directReports;
+    private List<Compensation> compensation;
 
     public Employee() {
     }
@@ -59,5 +64,27 @@ public class Employee {
 
     public void setDirectReports(List<Employee> directReports) {
         this.directReports = directReports;
+    }
+
+    public Compensation getMostRecentCompensation() {
+        if (compensation == null || compensation.isEmpty()) {
+            return null;
+        }
+        return compensation.get(compensation.size() - 1);
+    }
+
+    public void setNewCompensation(Compensation compensation) {
+        if (this.compensation == null) {
+            this.compensation = new ArrayList<>();
+        }
+        this.compensation.add(compensation);
+    }
+
+    public List<Compensation> getCompensations() {
+        return compensation;
+    }
+
+    public void setCompensations(List<Compensation> compensation) {
+        this.compensation = compensation;
     }
 }
