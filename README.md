@@ -28,6 +28,18 @@ The following endpoints are available to use:
     * URL: localhost:8080/employee/{id}
     * PAYLOAD: Employee
     * RESPONSE: Employee
+* READ REPORTING STRUCTURE
+    * HTTP Method: GET
+    * URL: localhost:8080/reportingStructure/{employeeId}
+    * RESPONSE: ReportingStructure
+* CREATE COMPENSATION
+    * HTTP Method: POST
+    * URL: localhost:8080/compensation?employee={employeeId}&salary={salary}&effectiveDate={yyyy-MM-dd}
+    * RESPONSE: Compensation
+* READ MOST RECENT COMPENSATION
+    * HTTP Method: GET
+    * URL: localhost:8080/compensation/{employeeId}
+    * RESPONSE: Compensation
 ```
 
 The Employee has a JSON schema of:
@@ -68,6 +80,16 @@ The Employee has a JSON schema of:
 }
 ```
 For all endpoints that require an `id` in the URL, this is the `employeeId` field.
+
+The `ReportingStructure` response contains the requested employee and the total number of distinct direct and indirect reports:
+```json
+{
+  "employee": {
+    "employeeId": "16a596ae-edd3-4847-99fe-c4518e82c86f"
+  },
+  "numberOfReports": 4
+}
+```
 
 ## What to Implement
 This coding challenge was designed to allow for flexibility in the approaches you take. While the requirements are 
